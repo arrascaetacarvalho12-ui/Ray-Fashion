@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Masculino - Ray Fashion</title>
+<style>
+body{background:#f5f0ff;color:#2d2a6e;font-family:Arial;text-align:center;margin:0}
+header{background:#2d2a6e;color:white;padding:20px}
+.menu{display:flex;justify-content:center;gap:10px;padding:15px;flex-wrap:wrap}
+.menu a{background:white;color:#2d2a6e;padding:10px 16px;border-radius:20px;text-decoration:none;font-weight:bold;border:2px solid #2d2a6e}
+.menu a.ativo{background:#2d2a6e;color:white}
+.search-box{max-width:500px;margin:10px auto;display:flex;gap:8px;padding:0 15px}
+.search-box input{flex:1;padding:12px;border:none;border-radius:20px;outline:none;font-size:15px}
+.search-box button{background:#a78bfa;color:white;border:none;padding:12px 18px;border-radius:20px;font-weight:bold;cursor:pointer}
+.produtos{display:flex;justify-content:center;gap:18px;flex-wrap:wrap;padding:20px}
+.produto{background:white;border-radius:15px;padding:15px;width:215px;box-shadow:0 4px 10px rgba(0,0,0,0.1)}
+.produto img{width:100%;height:200px;object-fit:cover;border-radius:10px}
+.produto h3{margin:10px 0 5px;font-size:16px}
+.tamanhos{display:flex;justify-content:center;gap:5px;margin:8px 0;flex-wrap:wrap}
+.tamanhos button{background:#eee;border:1px solid #ccc;padding:6px 10px;border-radius:8px;cursor:pointer;font-weight:bold}
+.tamanhos button.selecionado{background:#2d2a6e;color:white;border-color:#2d2a6e}
+.comprar{background:#2d2a6e;color:white;border:none;padding:10px;border-radius:10px;font-weight:bold;cursor:pointer;width:100%;margin-top:5px}
+.carrinho-box{background:white;max-width:600px;margin:20px auto;padding:20px;border-radius:15px}
+.carrinho-box ul{list-style:none;margin:10px 0;padding:0}
+.carrinho-box li{padding:8px;border-bottom:1px solid #eee;display:flex;justify-content:space-between}
+.btn-finalizar{background:#22c55e;color:white;border:none;padding:12px 25px;border-radius:10px;font-weight:bold;cursor:pointer}
+footer{background:#2d2a6e;color:white;padding:20px;margin-top:20px}
+</style>
+</head>
+<body>
+
+<header>
+<h1>RAY FASHION ✨</h1>
+<p>👕 Coleção Masculina</p>
+<div class="search-box">
+<input id="pesquisa" placeholder="🔍 Pesquisar... ex: jeans, camiseta" onkeyup="pesquisar()">
+<button onclick="pesquisar()">Buscar</button>
+</div>
+<p id="contador" style="background:white;color:#2d2a6e;display:inline-block;padding:6px 14px;border-radius:20px;font-weight:bold;margin-top:10px;">🛒 Carrinho: 0 item(ns) - R$ 0,00</p>
+</header>
+
+<nav class="menu">
+<a href="index.html">🏠 Início</a>
+<a href="feminino.html">👗 Feminino</a>
+<a href="masculino.html" class="ativo">👕 Masculino</a>
+<a href="acessorios.html">👜 Acessórios</a>
+</nav>
+
+<p id="nenhum" style="display:none;padding:20px;">😢 Nenhuma roupa encontrada. Tenta pesquisar "jeans" ou "camiseta"</p>
+
+<div class="produtos">
+
+<div class="produto" data-nome="camiseta basica branca">
+<img src="https://images.unsplash.com/photo-1521572163474-6864f9cf17ab?w=400" alt="Camiseta">
+<h3>Camiseta Básica Branca</h3>
+<p><b>R$ 49,90</b></p>
+<div class="tamanhos">
+<button onclick="selecionarTam(this)">P</button>
+<button class="selecionado" onclick="selecionarTam(this)">M</button>
+<button onclick="selecionarTam(this)">G</button>
+<button onclick="selecionarTam(this)">GG</button>
+</div>
+<button class="comprar" onclick="adicionarCarrinho(this,'Camiseta Básica Branca',49.90)">Comprar</button>
+</div>
+
+<div class="produto" data-nome="calça jeans slim calca jeans">
+<img src="https://images.unsplash.com/photo-1542272604-787c3835535d?w=400" alt="Calça Jeans">
+<h3>Calça Jeans Slim</h3>
+<p><b>R$ 89,90</b></p>
+<div class="tamanhos">
+<button onclick="selecionarTam(this)">36</button>
+<button class="selecionado" onclick="selecionarTam(this)">38</button>
+<button onclick="selecionarTam(this)">40</button>
+<button onclick="selecionarTam(this)">42</button>
+</div>
+<button class="comprar" onclick="adicionarCarrinho(this,'Calça Jeans Slim',89.90)">Comprar</button>
+</div>
+
+<div class="produto" data-nome="jaqueta jeans">
+<img src="https://images.unsplash.com/photo-1591047139829-d91aecb6caea?w=400" alt="Jaqueta">
+<h3>Jaqueta Jeans</h3>
+<p><b>R$ 149,90</b></p>
+<div class="tamanhos">
+<button onclick="selecionarTam(this)">P</button>
+<button class="selecionado" onclick="selecionarTam(this)">M</button>
+<button onclick="selecionarTam(this)">G</button>
+<button onclick="selecionarTam(this)">GG</button>
+</div>
+<button class="comprar" onclick="adicionarCarrinho(this,'Jaqueta Jeans',149.90)">Comprar</button>
+</div>
+
+<div class="produto" data-nome="camisa social">
+<img src="https://images.unsplash.com/photo-1618354691373-d851c5c3a990?w=400" alt="Camisa">
+<h3>Camisa Social</h3>
+<p><b>R$ 109,90</b></p>
+<div class="tamanhos">
+<button onclick="selecionarTam(this)">P</button>
+<button onclick="selecionarTam(this)">M</button>
+<button class="selecionado" onclick="selecionarTam(this)">G</button>
+<button onclick="selecionarTam(this)">GG</button>
+</div>
+<button class="comprar" onclick="adicionarCarrinho(this,'Camisa Social',109.90)">Comprar</button>
+</div>
+
+</div>
+
+<div class="carrinho-box">
+<h2>🛒 Meu Carrinho</h2>
+<ul id="lista-carrinho"></ul>
+<p id="total"><b>Total: R$ 0,00</b></p>
+<button class="btn-finalizar" onclick="finalizarCompra()">Finalizar Compra</button>
+</div>
+
+<footer>
+<p>Ray Fashion © 2026 - Feito com 💜 por Ray</p>
+</footer>
+
+<script src="script.js"></script>
+</body>
+</html>

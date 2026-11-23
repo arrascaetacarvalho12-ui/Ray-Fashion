@@ -1,0 +1,147 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Finalizar Compra - Ray Fashion</title>
+<style>
+body{background:#f5f0ff;color:#2d2a6e;font-family:Arial;text-align:center;margin:0}
+header{background:#2d2a6e;color:white;padding:20px}
+.menu{display:flex;justify-content:center;gap:10px;padding:15px;flex-wrap:wrap}
+.menu a{background:white;color:#2d2a6e;padding:10px 16px;border-radius:20px;text-decoration:none;font-weight:bold;border:2px solid #2d2a6e}
+.box{background:white;max-width:550px;margin:20px auto;padding:25px;border-radius:15px;text-align:left;box-shadow:0 4px 10px rgba(0,0,0,0.1)}
+.box h2{text-align:center;margin-bottom:15px}
+.box label{font-weight:bold;display:block;margin-top:12px;margin-bottom:5px}
+.box input, .box select{width:100%;padding:12px;border:2px solid #ddd;border-radius:10px;outline:none;font-size:15px;box-sizing:border-box}
+.box input:focus{border-color:#a78bfa}
+#resumo{background:#f5f0ff;padding:15px;border-radius:10px;margin-bottom:15px}
+#resumo li{padding:6px 0;border-bottom:1px solid #ddd;display:flex;justify-content:space-between;list-style:none}
+#resumo ul{padding:0}
+.btn{width:100%;background:#22c55e;color:white;border:none;padding:15px;border-radius:10px;font-weight:bold;font-size:16px;cursor:pointer;margin-top:20px}
+.btn:hover{background:#16a34a}
+.voltar{display:block;text-align:center;margin-top:15px;color:#2d2a6e;font-weight:bold;text-decoration:none}
+.sucesso{display:none;background:#dcfce7;border:2px solid #22c55e;padding:20px;border-radius:15px;text-align:center}
+.sucesso h2{color:#16a34a}
+footer{background:#2d2a6e;color:white;padding:20px;margin-top:20px}
+</style>
+</head>
+<body>
+
+<header>
+<h1>RAY FASHION ✨</h1>
+<p>🛒 Finalizar Compra</p>
+</header>
+
+<nav class="menu">
+<a href="index.html">🏠 Início</a>
+<a href="feminino.html">👗 Feminino</a>
+<a href="masculino.html">👕 Masculino</a>
+<a href="acessorios.html">👜 Acessórios</a>
+</nav>
+
+<div class="box" id="form-box">
+<h2>Resumo do Pedido</h2>
+<div id="resumo">
+<ul id="lista"></ul>
+<p id="total" style="text-align:right;font-weight:bold;font-size:18px;margin-top:10px;">Total: R$ 0,00</p>
+<p id="frete" style="text-align:right;color:green;font-weight:bold;">Frete: Grátis ✨</p>
+</div>
+
+<h2>Seus Dados</h2>
+
+<label>Seu nome:</label>
+<input type="text" id="nome" placeholder="Ex: Rayane Silva">
+
+<label>WhatsApp:</label>
+<input type="text" id="zap" placeholder="(21) 99999-9999">
+
+<label>Endereço:</label>
+<input type="text" id="endereco" placeholder="Rua, número, bairro, cidade">
+
+<label>Como vai pagar?</label>
+<select id="pagamento" onchange="mostrarPix()">
+<option value="pix">PIX - 10% OFF ✨</option>
+<option value="cartao">Cartão de Crédito</option>
+<option value="boleto">Boleto</option>
+<option value="dinheiro">Dinheiro na Entrega</option>
+</select>
+
+<div id="pix-box" style="display:block;background:#f5f0ff;padding:15px;border-radius:10px;margin-top:15px;text-align:center;">
+<p><b>Pague com PIX e ganhe desconto! ✨</b></p>
+<p>Chave PIX: <b>rayfashion@gmail.com</b></p>
+<p id="total-pix" style="font-weight:bold;color:green;"></p>
+<p style="font-size:13px;">Depois de pagar, manda o comprovante no WhatsApp!</p>
+</div>
+
+<button class="btn" onclick="confirmarPedido()">✅ Confirmar Pedido</button>
+<a class="voltar" href="index.html">← Voltar e continuar comprando</a>
+</div>
+
+<div class="box sucesso" id="sucesso-box">
+<h2>🎉 Pedido Confirmado!</h2>
+<p id="msg-sucesso"></p>
+<p>Obrigada por comprar na <b>Ray Fashion!</b> 💜</p>
+<p>Te chamamos no WhatsApp pra confirmar a entrega!</p>
+<button class="btn" onclick="novoPedido()">Fazer outro pedido</button>
+<a class="voltar" href="index.html">Voltar pra loja</a>
+</div>
+
+<footer>
+<p>Ray Fashion © 2026 - Feito com 💜 por Ray</p>
+</footer>
+
+<script>
+let carrinho = JSON.parse(localStorage.getItem('ray_carrinho') || '[]');
+let total = parseFloat(localStorage.getItem('ray_total') || 0);
+
+let lista = document.getElementById('lista');
+let totalEl = document.getElementById('total');
+let totalPixEl = document.getElementById('total-pix');
+
+if (carrinho.length === 0) {
+  lista.innerHTML = '<li style="text-align:center;">Seu carrinho está vazio 😢</li>';
+  totalEl.innerText = 'Total: R$ 0,00';
+} else {
+  lista.innerHTML = '';
+  carrinho.forEach(item => {
+    let li = document.createElement('li');
+    li.innerHTML = `<span>${item.nome}</span><span>R$ ${item.preco.toFixed(2).replace('.', ',')}</span>`;
+    lista.appendChild(li);
+  });
+  totalEl.innerText = `Total: R$ ${total.toFixed(2).replace('.', ',')}`;
+  let comDesconto = total * 0.9;
+  totalPixEl.innerText = `No PIX fica só R$ ${comDesconto.toFixed(2).replace('.', ',')} (com 10% OFF!)`;
+}
+
+function mostrarPix() {
+  let pag = document.getElementById('pagamento').value;
+  document.getElementById('pix-box').style.display = pag === 'pix' ? 'block' : 'none';
+}
+
+function confirmarPedido() {
+  let nome = document.getElementById('nome').value;
+  let zap = document.getElementById('zap').value;
+  let endereco = document.getElementById('endereco').value;
+
+  if (carrinho.length === 0) { alert('Seu carrinho está vazio! Volta pra loja e escolhe uma roupa!'); return; }
+  if (!nome || !zap || !endereco) { alert('Preenche seu nome, WhatsApp e endereço pra gente entregar! 💜'); return; }
+
+  let pag = document.getElementById('pagamento').value;
+  let textoPag = pag === 'pix' ? 'PIX' : pag === 'cartao' ? 'Cartão de Crédito' : pag === 'boleto' ? 'Boleto' : 'Dinheiro na Entrega';
+  let totalFinal = pag === 'pix' ? (total * 0.9).toFixed(2).replace('.', ',') : total.toFixed(2).replace('.', ',');
+
+  document.getElementById('form-box').style.display = 'none';
+  document.getElementById('sucesso-box').style.display = 'block';
+  document.getElementById('msg-sucesso').innerHTML = `<b>${nome}</b>, seu pedido de <b>R$ ${totalFinal}</b> no <b>${textoPag}</b> foi confirmado!<br>Vamos entregar em: <b>${endereco}</b>`;
+
+  // Limpa o carrinho
+  localStorage.removeItem('ray_carrinho');
+  localStorage.removeItem('ray_total');
+}
+
+function novoPedido() {
+  window.location.href = 'index.html';
+}
+</script>
+</body>
+</html>

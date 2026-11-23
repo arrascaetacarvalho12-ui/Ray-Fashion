@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head><meta charset="UTF-8"><title>Ray Fashion ✨</title>
+<style>
+body{background:#f5f0ff;color:#2d2a6e;font-family:Arial;text-align:center;margin:0}
+header{background:#2d2a6e;color:white;padding:25px}
+.menu{display:flex;justify-content:center;gap:10px;padding:20px;flex-wrap:wrap}
+.menu a{background:white;color:#2d2a6e;padding:12px 20px;border-radius:20px;text-decoration:none;font-weight:bold;border:2px solid #2d2a6e}
+.menu a:hover{background:#2d2a6e;color:white}
+.cards{display:flex;justify-content:center;gap:20px;flex-wrap:wrap;padding:20px}
+.card{background:white;border-radius:15px;padding:15px;width:220px;box-shadow:0 4px 10px rgba(0,0,0,0.1)}
+.card img{width:100%;height:200px;object-fit:cover;border-radius:10px}
+.card a{display:block;background:#2d2a6e;color:white;padding:10px;border-radius:10px;text-decoration:none;font-weight:bold;margin-top:10px}
+</style>
+</head>
+<body>
+<header>
+<h1>RAY FASHION ✨</h1>
+<p>Seu estilo, sua vibe | Frete grátis acima de R$ 199</p>
+<p id="contador" style="background:white;color:#2d2a6e;display:inline-block;padding:6px 14px;border-radius:20px;font-weight:bold;margin-top:10px;">🛒 Carrinho: 0 item(ns) - R$ 0,00</p>
+</header>
+
+<div style="background:#a78bfa;color:white;padding:18px;font-weight:bold;">🔥 PROMOÇÃO: Até 50% OFF na coleção nova!</div>
+
+<nav class="menu">
+<a href="index.html">🏠 Início</a>
+<a href="feminino.html">👗 Feminino</a>
+<a href="masculino.html">👕 Masculino</a>
+<a href="acessorios.html">👜 Acessórios</a>
+</nav>
+
+<h2>Escolha uma coleção 👇</h2>
+<div class="cards">
+<div class="card">
+<img src="https://images.unsplash.com/photo-1595777457583-95e059d581b8?w=400">
+<h3>Feminino</h3><p>Vestidos, saias, blusas e mais</p>
+<a href="feminino.html">Ver coleção Feminina →</a>
+</div>
+<div class="card">
+<img src="https://images.unsplash.com/photo-1521572163474-6864f9cf17ab?w=400">
+<h3>Masculino</h3><p>Camisetas, jeans, camisas e mais</p>
+<a href="masculino.html">Ver coleção Masculina →</a>
+</div>
+<div class="card">
+<img src="https://images.unsplash.com/photo-1584917865442-de89df76afd3?w=400">
+<h3>Acessórios</h3><p>Bolsas, óculos, relógios e mais</p>
+<a href="acessorios.html">Ver Acessórios →</a>
+</div>
+</div>
+
+<div style="background:white;max-width:600px;margin:20px auto;padding:20px;border-radius:15px;">
+<h2>🛒 Meu Carrinho</h2>
+<ul id="lista-carrinho" style="list-style:none;"></ul>
+<p id="total" style="font-weight:bold;">Total: R$ 0,00</p>
+<button onclick="finalizarCompra()" style="background:#22c55e;color:white;border:none;padding:12px 25px;border-radius:10px;font-weight:bold;cursor:pointer;">Finalizar Compra</button>
+</div>
+
+<footer style="background:#2d2a6e;color:white;padding:20px;">Ray Fashion © 2026 - Feito com 💜 por Ray</footer>
+<script src="script.js"></script>
+</body>
+</html>
